@@ -1,16 +1,15 @@
-name: Flask CI Pipeline
+name: CI
 
-# Trigger the workflow on push or pull request to the main branch
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on push to the 'main' branch
   pull_request:
     branches:
-      - main
+      - main  # Trigger on pull request to the 'main' branch
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,16 +19,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'  # Specify the Python version you want to use
+        python-version: '3.10'  # Or any version you'd like
 
     - name: Install dependencies
       run: |
-        python -m venv venv
-        . venv/bin/activate
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
-        python -m spacy download en-core-web-sm  # Install spaCy model
 
     - name: Run tests
       run: |
-        . venv/bin/activate
-        pytest  # Assuming you are using pytest for tests, otherwise modify this step
+        pytest
