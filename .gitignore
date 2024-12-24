@@ -1,3 +1,11 @@
-venv/
-*.pyc
+# Ignore Python bytecode files
 __pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+venv/
+.env/
+
+# Ignore IDE configuration files
+.vscode/
+.idea/
